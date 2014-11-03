@@ -1,4 +1,5 @@
 class users{
+
 	user { 'jjung':
         	ensure => 'present',
         	groups => ['sudo', 'ubuntu'],
@@ -21,5 +22,12 @@ class users{
 		source => 'puppet:///modules/users/jjung',
 		recurse => remote,
 		require => User['jjung']
+	}
+
+	ssh_authorized_key { 'jjung':
+		ensure => 'present',
+		user => 'jjung',
+		type => 'rsa',
+		key => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDj7GSnMp3hOsNcceQrwVEID2OPMm4wJCtymT0Q5OXPgq/PBHit7AT+r3XwtUDDgGruF8g+n2yiSqJXaO23oM0yzt4nbVt3PTlkNQvYlG0r6wQXtC//ZxX7P0aPFlKHnTXVc9Lu08pwFQDTnx9n+cfWgruFwOdqirTUhvHVKPtlH4JGl2wleTmUTClPSjb0FfgZ+FmxZviZH3dRzfHPPH712N8nOuUzfT/9MtovTa8UCyKxRwvSJv97Rj7lV92r7xWKAQaRJbR0ovNXZYk1O3xCH3QIbGI6CcB2R8KefHLtV0eTOCI12oyJ2KFrUKGjThxDu9SUaRW8lkF4+ednQ7av'
 	}
 }

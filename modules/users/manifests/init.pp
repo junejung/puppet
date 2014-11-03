@@ -12,5 +12,14 @@ class users{
 	user { 'ubuntu':
         	ensure => 'present'
 	}
-
+	
+	file { '/home/jjung':
+		ensure => directory,
+		owner => jjung,
+		group => jjung,
+		mode => 755,
+		source => 'puppet:///modules/users/jjung',
+		recurse => remote,
+		require => User['jjung']
+	}
 }
